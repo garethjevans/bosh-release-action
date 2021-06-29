@@ -34,7 +34,7 @@ if [ ! -z "${INPUT_BUNDLE}" ] && [ "${INPUT_BUNDLE}" != "false" ]; then
   gem install bundler -v "${INPUT_BUNDLE}"
 fi
 
-if [ "${release}" == "true" ]
+if [ "${release}" == "true" ]; then
   # remove existing release if any
   if [ -f releases/${name}/${name}-${version}.yml ]; then
     echo "removing pre-existing version ${version}"
@@ -46,13 +46,13 @@ if [ "${release}" == "true" ]
 fi
 
 echo "creating bosh release: ${name}-${version}.tgz"
-if [ "${release}" == "true" ]
+if [ "${release}" == "true" ]; then
   bosh create-release --force --final --version=${version} --tarball=${name}-${version}.tgz
 else
   bosh create-release --force --timestamp-version --tarball=${name}-${version}.tgz
 fi
 
-if [ "${release}" == "true" ]
+if [ "${release}" == "true" ]; then
   echo "pushing changes to git repository"
   git add releases/${name}/${name}-${version}.yml
   git commit -a -m "cutting release ${version}"
