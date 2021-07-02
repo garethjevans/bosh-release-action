@@ -47,9 +47,9 @@ fi
 
 echo "creating bosh release: ${name}-${version}.tgz"
 if [ "${release}" == "true" ]; then
-  bosh create-release --force --final --version=${version} --tarball=${name}-${version}.tgz
+  bosh create-release --sha2 --force --final --version=${version} --tarball=${name}-${version}.tgz
 else
-  bosh create-release --force --timestamp-version --tarball=${name}-${version}.tgz
+  bosh create-release --sha2 --force --timestamp-version --tarball=${name}-${version}.tgz
 fi
 
 if [ "${release}" == "true" ]; then
